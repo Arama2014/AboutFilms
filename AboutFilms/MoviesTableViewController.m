@@ -7,8 +7,12 @@
 //
 
 #import "MoviesTableViewController.h"
+#import "NetworkManager.h"
+#import "MovieTableViewCell.h"
 
 @interface MoviesTableViewController ()
+
+@property(nonatomic)NSArray *movieLists;
 
 @end
 
@@ -16,6 +20,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+   // @"open-date=2016-07-22"
+    
+    [[NetworkManager sharedManager] getMovies:@"2016-07-15;2016-07-22" completion:^(NSArray *results){
+    
+        self.movieLists= [results copy]; //make a copy of results instead of assign
+        
+        [self.tableView reloadData];
+    }];
+    
+    
+
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -33,23 +48,26 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 #warning Incomplete implementation, return the number of sections
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 #warning Incomplete implementation, return the number of rows
-    return 0;
+    return self.movieLists.count;
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    MovieTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieCell" forIndexPath:indexPath];
+  //  cell.MovieTitle.text = self.movieLists[indexPath.row].title;
+    cell.movieHeadline.text = self.movieLists[indexPath.row];
+    
     
     // Configure the cell...
     
     return cell;
 }
-*/
+
 
 /*
 // Override to support conditional editing of the table view.

@@ -19,7 +19,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
 //#ifdef DEBUG
-    [self testStuff];
+  //  [self testStuff];
 //#endif
     return YES;
 }
@@ -46,8 +46,8 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-- (void)testStuff {
-    [[NetworkManager sharedManager] getMovies:@"family"];
-}
-
+//- (void)testStuff {
+//    [[NetworkManager sharedManager] getMovies:@"family"];
+//}
+//
 @end
