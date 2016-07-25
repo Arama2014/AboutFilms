@@ -47,9 +47,9 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="MovieTitle" destination="34Z-dr-acm" id="qz7-aI-yk9"/>
                                     <outlet property="movieHeadline" destination="doh-mv-jEd" id="3PU-Xa-79C"/>
                                     <outlet property="movieImage" destination="9MS-n8-RMz" id="qwh-CC-IuG"/>
+                                    <outlet property="movieTitle" destination="34Z-dr-acm" id="5SQ-KS-kJ5"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

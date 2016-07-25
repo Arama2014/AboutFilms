@@ -9,6 +9,7 @@
 #import "MoviesTableViewController.h"
 #import "NetworkManager.h"
 #import "MovieTableViewCell.h"
+#import "Review.h"
 
 @interface MoviesTableViewController ()
 
@@ -22,8 +23,8 @@
     [super viewDidLoad];
    // @"open-date=2016-07-22"
     
-    [[NetworkManager sharedManager] getMovies:@"2016-07-15;2016-07-22" completion:^(NSArray *results){
-    
+    [[NetworkManager sharedManager] getMovies:@"2016-07-15;2016-07-22" completionBlock:^(NSArray *results){
+    // 1. view loads 2. getMovies is called with date string and creates an array of results 3. with those results do this block, store in movieLists
         self.movieLists= [results copy]; //make a copy of results instead of assign
         
         [self.tableView reloadData];
@@ -47,21 +48,24 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
     return self.movieLists.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     MovieTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieCell" forIndexPath:indexPath];
-  //  cell.MovieTitle.text = self.movieLists[indexPath.row].title;
-    cell.movieHeadline.text = self.movieLists[indexPath.row];
+//    cell.MovieTitle.text = self.movieLists[indexPath.row].title;
     
+    NSUInteger row = [indexPath indexAtPosition:1];
+    Review *review = self.movieLists[row];
+    
+    cell.movieHeadline.text = review.title;
+    cell.movieTitle.text = review.title;
+    //cell.movieImage.
     
     // Configure the cell...
     

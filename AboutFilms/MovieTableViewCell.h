@@ -13,7 +13,7 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *movieImage;
 
-@property (weak, nonatomic) IBOutlet UILabel *MovieTitle;
+@property (weak, nonatomic) IBOutlet UILabel *movieTitle;
 
 @property (weak, nonatomic) IBOutlet UILabel *movieHeadline;
 

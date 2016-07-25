@@ -12,13 +12,13 @@
 
 @interface Review : NSObject
 
-@property (nonatomic, strong) NSString *title;
+@property (nonatomic, copy) NSString *title;
 @property (nonatomic, strong) NSString *summary;
-@property (nonatomic) NSInteger criticsPick;
+@property (nonatomic, assign) NSInteger criticsPick;
 @property (nonatomic,strong) NSString *mpaaRating;
 @property (nonatomic,strong) NSString *openingDate;
 @property (nonatomic,strong) NSString *headline;
-
+@property (nonatomic,strong) NSURL *pic;
 
 
 //@property (nonatomic,strong)

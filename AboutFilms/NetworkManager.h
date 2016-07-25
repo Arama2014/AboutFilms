@@ -12,7 +12,7 @@
 @interface NetworkManager : NSObject
 + (instancetype)sharedManager;
 //- (void)getMovies:(NSString*)searchTerm ;
-- (void)getMovies:(NSString*)searchTerm completion:(void (^) (NSArray *results))completion;
+- (void)getMovies:(NSString*)searchTerm completionBlock:(void (^) (NSArray *results))completion;
 @property (nonatomic,strong)NSMutableArray *reviews;
 
 @end
