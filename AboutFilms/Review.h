@@ -18,7 +18,7 @@
 @property (nonatomic,strong) NSString *mpaaRating;
 @property (nonatomic,strong) NSString *openingDate;
 @property (nonatomic,strong) NSString *headline;
-@property (nonatomic,strong) NSURL *pic;
+@property (nonatomic,strong) NSURL *thumbNailUrl;
 
 
 //@property (nonatomic,strong)

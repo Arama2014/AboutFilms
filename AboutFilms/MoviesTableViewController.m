@@ -4,7 +4,9 @@
 //
 //  Created by Arama Brown on 5/18/16.
 //  Copyright © 2016 Arama Brown. All rights reserved.
-//
+
+//delegates 
+//nsnotification broadcast to many and request  and the objects don't need to know about each other 
 
 #import "MoviesTableViewController.h"
 #import "NetworkManager.h"
@@ -45,7 +47,8 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
+#pragma mark -
+#pragma mark UITableViewDataSource methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
@@ -63,8 +66,12 @@
     NSUInteger row = [indexPath indexAtPosition:1];
     Review *review = self.movieLists[row];
     
-    cell.movieHeadline.text = review.title;
+    cell.movieHeadline.text = review.headline;
     cell.movieTitle.text = review.title;
+    
+    UIImage *pic = [UIImage imageWithData:[NSData dataWithContentsOfURL:review.thumbNailUrl]];
+    
+    cell.movieImage.image = pic;
     //cell.movieImage.
     
     // Configure the cell...

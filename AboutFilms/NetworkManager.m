@@ -80,6 +80,12 @@ static NSString * const NYTUrl = @"https://api.nytimes.com/svc/movies/v2/reviews
                 movieReview.mpaaRating= [dict objectForKey:@"mpaa_rating"];
                 movieReview.openingDate = [dict objectForKey:@"opening_date"];
                 movieReview.headline = [dict objectForKey: @"headline"];
+                
+                NSString *urlString = [[dict objectForKey:@"multimedia"] objectForKey:@"src"];
+                NSURL *url = [[NSURL alloc] initWithString:urlString];
+                movieReview.thumbNailUrl = url;
+                
+                
                 [self.reviews addObject:movieReview]; //adding our movieReview object to our list of moviereview objects
             }
 
