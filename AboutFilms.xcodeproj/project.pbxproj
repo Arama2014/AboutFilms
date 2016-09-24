@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2FFC2AAAFA0CC3FE814DE4F4 /* libPods-AboutFilms.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 046DF532C4C701881105C331 /* libPods-AboutFilms.a */; };
 		A51198E71CED00820031B4AC /* MoviesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A51198E61CED00820031B4AC /* MoviesTableViewController.m */; };
+		A52C6A5D1D5125DE003F9E22 /* MovieDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A52C6A5C1D5125DE003F9E22 /* MovieDetailViewController.m */; };
 		A542D5261D19A9170018855E /* Review.m in Sources */ = {isa = PBXBuildFile; fileRef = A542D5251D19A9170018855E /* Review.m */; };
 		A575F1591D2DCB1700AE61B3 /* MovieTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A575F1581D2DCB1700AE61B3 /* MovieTableViewCell.m */; };
 		A5E501421CECEF7A00750CE4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E501411CECEF7A00750CE4 /* main.m */; };
@@ -44,6 +45,8 @@
 		6AA80B13CEBADA0569A6E9AC /* Pods-AboutFilms.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AboutFilms.release.xcconfig"; path = "Pods/Target Support Files/Pods-AboutFilms/Pods-AboutFilms.release.xcconfig"; sourceTree = "<group>"; };
 		A51198E51CED00820031B4AC /* MoviesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoviesTableViewController.h; sourceTree = "<group>"; };
 		A51198E61CED00820031B4AC /* MoviesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoviesTableViewController.m; sourceTree = "<group>"; };
+		A52C6A5B1D5125DE003F9E22 /* MovieDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieDetailViewController.h; sourceTree = "<group>"; };
+		A52C6A5C1D5125DE003F9E22 /* MovieDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieDetailViewController.m; sourceTree = "<group>"; };
 		A542D5241D19A9170018855E /* Review.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Review.h; sourceTree = "<group>"; };
 		A542D5251D19A9170018855E /* Review.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Review.m; sourceTree = "<group>"; };
 		A575F1571D2DCB1700AE61B3 /* MovieTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieTableViewCell.h; sourceTree = "<group>"; };
@@ -114,6 +117,8 @@
 		A52B70731D076DDD001E5A93 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A52C6A5B1D5125DE003F9E22 /* MovieDetailViewController.h */,
+				A52C6A5C1D5125DE003F9E22 /* MovieDetailViewController.m */,
 				A575F1571D2DCB1700AE61B3 /* MovieTableViewCell.h */,
 				A575F1581D2DCB1700AE61B3 /* MovieTableViewCell.m */,
 				A51198E51CED00820031B4AC /* MoviesTableViewController.h */,
@@ -397,6 +402,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5E501451CECEF7A00750CE4 /* AppDelegate.m in Sources */,
+				A52C6A5D1D5125DE003F9E22 /* MovieDetailViewController.m in Sources */,
 				A51198E71CED00820031B4AC /* MoviesTableViewController.m in Sources */,
 				A5F508851D0A35C200FE2A04 /* NetworkManager.m in Sources */,
 				A5E501421CECEF7A00750CE4 /* main.m in Sources */,

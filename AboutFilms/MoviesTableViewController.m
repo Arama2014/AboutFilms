@@ -12,28 +12,38 @@
 #import "NetworkManager.h"
 #import "MovieTableViewCell.h"
 #import "Review.h"
+#import "MovieDetailViewController.h"
 
 @interface MoviesTableViewController ()
 
 @property(nonatomic)NSArray *movieLists;
 
+
 @end
 
 @implementation MoviesTableViewController
+{
+    NSArray *searchResults;
+    UISearchController *searchController;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
    // @"open-date=2016-07-22"
     
-    [[NetworkManager sharedManager] getMovies:@"2016-07-15;2016-07-22" completionBlock:^(NSArray *results){
+    [[NetworkManager sharedManager] getMovies:@"" completionBlock:^(NSArray *results){ //@"2016-07-29;2016-08-05"
     // 1. view loads 2. getMovies is called with date string and creates an array of results 3. with those results do this block, store in movieLists
-        self.movieLists= [results copy]; //make a copy of results instead of assign
+        self.movieLists= [results copy]; //make a copy of results instead of assign//
         
         [self.tableView reloadData];
     }];
     
+    searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
     
+    searchController.searchResultsUpdater = self;
+    searchController.dimsBackgroundDuringPresentation = NO;
 
+    self.tableView.tableHeaderView =searchController.searchBar;
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -42,6 +52,17 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+
+
+-(void)filterContentForSearchText:(NSString*)searchText {
+    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"title contains[c] %@", searchText];
+    searchResults = [self.movieLists filteredArrayUsingPredicate:resultPredicate];
+}
+
+-(void) updateSearchResultsForSearchController:(UISearchController *)searchController{
+    [self filterContentForSearchText:searchController.searchBar.text];
+    [self.tableView reloadData];
+    }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -55,16 +76,31 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.movieLists.count;
+    
+    if(searchController.active){
+        return searchResults.count;
+    } else {
+        return self.movieLists.count;
+    }
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    MovieTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MovieCell" forIndexPath:indexPath];
-//    cell.MovieTitle.text = self.movieLists[indexPath.row].title;
+    MovieTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"MovieCell" forIndexPath:indexPath];
+   //    cell.MovieTitle.text = self.movieLists[indexPath.row].title;
     
-    NSUInteger row = [indexPath indexAtPosition:1];
-    Review *review = self.movieLists[row];
+  //  NSUInteger row = [indexPath indexAtPosition:1];
+  //  Review *review = self.movieLists[row];
+    //Review *review = self.movieLists[indexPath.row];
+    
+    
+    Review *review;
+    if(searchController.active) {
+        review = searchResults [indexPath.row];
+    } else{
+        review = self.movieLists[indexPath.row];
+    }
+    
     
     cell.movieHeadline.text = review.headline;
     cell.movieTitle.text = review.title;
@@ -77,6 +113,7 @@
     // Configure the cell...
     
     return cell;
+    
 }
 
 
@@ -114,14 +151,24 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if([segue.identifier isEqualToString:@"showDetailView"]) {
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        MovieDetailViewController *movieDetailViewController = segue.destinationViewController;
+        if(searchController.active) {
+            movieDetailViewController.movieObject = searchResults [indexPath.row];
+        } else{
+            movieDetailViewController.movieObject = self.movieLists[indexPath.row];
+        }
+    }
 }
-*/
+
 
 @end
+    
+    

@@ -8,8 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MoviesTableViewController : UITableViewController <UITableViewDataSource>
+@interface MoviesTableViewController : UITableViewController <UITableViewDataSource, UISearchResultsUpdating>
 //moviestableviewcontroller is the delegate for the tableview  implements the methods that are defined by the UITableViewDataSource Protocol
 //class implements a delegate by passing a method to my class, my class responds tableview does not own the controller. the controller owns the view
 //and the view owns the tableview...
+
+//@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+
+
+
 @end

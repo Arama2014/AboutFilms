@@ -9,7 +9,7 @@
 #import "NetworkManager.h"
 #import "Review.h"
 
-static NSString * const NYTkey = @"458d12afb57140d7bb1181f1ecc4c6a7";
+static NSString * const NYTkey = @"36f2b251b299479ab27627c7f39106fa";
 static NSString * const NYTUrl = @"https://api.nytimes.com/svc/movies/v2/reviews/";
 
 @interface NetworkManager()
@@ -54,10 +54,10 @@ static NSString * const NYTUrl = @"https://api.nytimes.com/svc/movies/v2/reviews
     dispatch_async(backgroundQueue, ^{
 
         NSAssert(searchTerm != nil, @"searchTerm != nil");//assert that search term is not nil, if it's not nil,it keeps going to the next line
-        NSString *path = @"search.json";   // @"open-date=2016-07-22";
+        NSString *path = @"all.json";       //@"search.json";   
         NSDictionary *params = @{
                                  @"api-key" : NYTkey,
-                                 @"opening-date" : searchTerm
+                                 @"order" : searchTerm //@"opening-date"
                                  };
         
         void (^successBlock)(NSURLSessionDataTask*, id) = ^(NSURLSessionDataTask *task, _Nullable id responseObject)
@@ -81,9 +81,16 @@ static NSString * const NYTUrl = @"https://api.nytimes.com/svc/movies/v2/reviews
                 movieReview.openingDate = [dict objectForKey:@"opening_date"];
                 movieReview.headline = [dict objectForKey: @"headline"];
                 
-                NSString *urlString = [[dict objectForKey:@"multimedia"] objectForKey:@"src"];
-                NSURL *url = [[NSURL alloc] initWithString:urlString];
-                movieReview.thumbNailUrl = url;
+                NSDictionary* multimediaDict = [dict objectForKey:@"multimedia"];
+                NSString *urlString = nil;
+                if (multimediaDict != nil && multimediaDict != [NSNull null]) {
+                    urlString = [multimediaDict objectForKey:@"src"];
+                }
+
+                if (urlString != nil) {
+                    NSURL *url = [[NSURL alloc] initWithString:urlString];
+                    movieReview.thumbNailUrl = url;
+                }
                 
                 
                 [self.reviews addObject:movieReview]; //adding our movieReview object to our list of moviereview objects
